@@ -99,12 +99,12 @@
     .app { display:flex; min-height:100dvh; }
     .sidebar { position:fixed; left:0; top:0; height:100dvh; width:var(--sidebar-w); background:var(--ccc-dark-blue); color:#fff; display:flex; flex-direction:column; z-index:200; overflow-y:hidden; overflow-x:hidden; transition:transform var(--transition); scrollbar-width:none; will-change:transform; }
     .sidebar::-webkit-scrollbar { display:none; }
-    .sidebar-logo { padding:14px 18px 10px; border-bottom:1px solid rgba(255,255,255,0.10); display:flex; flex-direction:column; align-items:flex-start; }
+    .sidebar-logo { padding:16px 16px 14px; background:#fff; border-bottom:1px solid rgba(20,50,95,0.12); display:flex; flex-direction:column; align-items:stretch; }
     .logo-mark { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
     .logo-icon-wrap { width:36px; height:36px; background:var(--ccc-gold); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .logo-icon-wrap svg { color:var(--ccc-dark-blue); }
     .logo-title { font-family:var(--font-display); font-size:17px; font-weight:600; color:#fff; line-height:1.2; }
-    .logo-sub { font-size:11.5px; color:rgba(255,255,255,0.88); letter-spacing:0.06em; text-transform:uppercase; font-weight:600; line-height:1.45; margin-top:10px; }
+    .logo-sub { font-size:11.5px; color:var(--ccc-dark-blue); letter-spacing:0.06em; text-transform:uppercase; font-weight:700; line-height:1.45; margin-top:12px; text-align:center; }
     .sidebar-section-label { font-size:9.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.55); padding:14px 18px 4px; }
     .sidebar-footer { margin-top:auto; padding:14px 18px 18px; border-top:1px solid rgba(255,255,255,0.10); }
     .sidebar-footer-label { font-size:9.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.85); margin-bottom:4px; }
@@ -787,7 +787,7 @@
     .cccco-wordmark { display:block; width:100%; max-width:220px; height:auto; }
     .cccco-wordmark--white { /* district wordmark styling for the District Blue sidebar */ filter:none; }
     .logo-divider { height:1px; background:rgba(255,255,255,0.16); margin:8px 0 8px; }
-    .logo-attribution { font-size:11px; color:rgba(255,255,255,0.72); letter-spacing:0.04em; margin-top:8px; line-height:1.45; }
+    .logo-attribution { font-size:11px; color:rgba(20,50,95,0.60); letter-spacing:0.04em; margin-top:6px; line-height:1.45; text-align:center; }
     .cccco-topbar-stamp { display:inline-flex; align-items:center; padding:6px 14px; height:44px; border-radius:22px; border:1px solid var(--border); background:var(--bg-surface); box-shadow:0 1px 2px rgba(20,50,95,0.04); transition:box-shadow .15s ease, border-color .15s ease; }
     .cccco-topbar-stamp:hover { box-shadow:0 2px 6px rgba(20,50,95,0.08); border-color:rgba(20,50,95,0.2); }
     .cccco-topbar-stamp img { height:26px; width:auto; display:block; object-fit:contain; }
@@ -914,9 +914,7 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <a class="cccco-logo-link" href="https://www.wvm.edu/" target="_blank" rel="noopener noreferrer" aria-label="West Valley-Mission Community College District" style="display:block;text-decoration:none;">
-        <span style="display:block;background:#fff;border-radius:8px;padding:12px 14px;box-shadow:0 1px 3px rgba(0,0,0,0.18);">
-          <img src="wvmccd-logo.png" alt="West Valley-Mission Community College District" width="705" height="520" style="display:block;width:100%;height:auto;" />
-        </span>
+        <img src="wvmccd-logo.png" alt="West Valley-Mission Community College District" width="705" height="520" style="display:block;width:100%;max-width:190px;height:auto;margin:0 auto;padding:2px 0;" />
       </a>
       <div class="logo-sub">LIFT Mentor Match &middot; EEO IBP Grant</div>
       <div class="logo-attribution">Administered by CCCCO</div>
