@@ -19,7 +19,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script>window.Chart || document.write('<script src="vendor/chart.umd.js"><\/script>');</script>
   <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+  <script>window.html2pdf || document.write('<script src="vendor/html2pdf.bundle.min.js"><\/script>');</script>
   <style>
     /* ════════════ APPLE-INSPIRED POLISH ON CCCCO PALETTE ════════════
        Clean typography, generous whitespace, subtle layered shadows,
@@ -1421,7 +1423,7 @@
                   <div class="bmrv-fld"><label>Total Award (Ceiling)</label><span class="bmrv-cell num">$100,000</span></div>
                   <div class="bmrv-fld"><label>Modified Project Budget</label><span class="bmrv-cell num">$100,000</span></div>
                   <div class="bmrv-fld"><label>Variance vs Award</label><span class="bmrv-cell num">$0 · Balanced</span></div>
-                  <div class="bmrv-fld"><label>Modified Y1 / Y2</label><span class="bmrv-cell num">$85,297 / $64,703</span></div>
+                  <div class="bmrv-fld"><label>Modified Y1 / Y2</label><span class="bmrv-cell num">$60,000 / $40,000</span></div>
                 </div>
               </div>
               <div style="margin-top:20px;">
@@ -1479,8 +1481,8 @@
               </div>
               <div class="bmr-summary-card gold">
                 <div class="bmr-summary-label">Modified Y1 / Y2</div>
-                <div class="bmr-summary-value" id="bmr-sum-year">$85,297 / $64,703</div>
-                <div class="bmr-summary-sub" id="bmr-sum-year-sub">Baseline $85,297 / $64,703</div>
+                <div class="bmr-summary-value" id="bmr-sum-year">$60,000 / $40,000</div>
+                <div class="bmr-summary-sub" id="bmr-sum-year-sub">Baseline $60,000 / $40,000</div>
               </div>
             </div>
 
@@ -2191,7 +2193,7 @@ const translations = {
     kpi_indirect_costs:'Indirect (5%)',
     kpi_indirect_costs_sub:'Object code 7000',
     kpi_y1y2_split:'Year 1 / Year 2',
-    kpi_y1y2_split_sub:'$85,297 / $64,703',
+    kpi_y1y2_split_sub:'$60,000 / $40,000',
     chart_funding_objcode:'Funding by Object Code',
     chart_direct_indirect:'Direct vs. Indirect',
     chart_by_objcode:'By Object Code',
@@ -2539,7 +2541,7 @@ const translations = {
     kpi_indirect_costs:'Անուղղակի (5%)',
     kpi_indirect_costs_sub:'Օբյեկտի կոդը 7000',
     kpi_y1y2_split:'Տարի 1 / Տարի 2',
-    kpi_y1y2_split_sub:'$85,297 / $64,703',
+    kpi_y1y2_split_sub:'$60,000 / $40,000',
     chart_funding_objcode:'Ֆինանսավորում օբյեկտի կոդով',
     chart_direct_indirect:'Ուղղակի ընդդեմ անուղղակի',
     chart_by_objcode:'Օբյեկտի կոդով',
@@ -2702,7 +2704,7 @@ const translations = {
     kpi_indirect_costs:'간접 (5%)',
     kpi_indirect_costs_sub:'개체 코드 7000',
     kpi_y1y2_split:'1년차 / 2년차',
-    kpi_y1y2_split_sub:'$85,297 / $64,703',
+    kpi_y1y2_split_sub:'$60,000 / $40,000',
     chart_funding_objcode:'개체 코드별 자금 조달',
     chart_direct_indirect:'직접 대 간접',
     chart_by_objcode:'개체 코드별',
@@ -3173,8 +3175,10 @@ const BMR_SEED = {
     district: 'West Valley-Mission Community College District',
     submittedBy: 'Ken Songco · Project Lead',
     email: 'kenneth.songco@missioncollege.edu',
-    date: '2026-06-30',
-    approvedBy: 'CCCCO Staff'
+    // Left blank: the district sets the date when it actually submits, and
+    // only CCCCO staff fill in Approved by once a request is approved.
+    date: '',
+    approvedBy: ''
   },
   years: {
     y1: { rows: {
@@ -3208,6 +3212,10 @@ function seedBmrIfEmpty() {
     const state = JSON.parse(raw) || {};
     state.meta = state.meta || {};
     let changed = false;
+    // Clear the placeholder date and approval that earlier versions pre-filled,
+    // so an unsubmitted draft never reads as dated or approved.
+    if (state.meta.date === '2026-06-30') { state.meta.date = ''; changed = true; }
+    if (state.meta.approvedBy === 'CCCCO Staff') { state.meta.approvedBy = ''; changed = true; }
     ['district','submittedBy','email','date','approvedBy'].forEach(k => {
       if (!state.meta[k] && BMR_SEED.meta[k]) { state.meta[k] = BMR_SEED.meta[k]; changed = true; }
     });
@@ -3928,6 +3936,7 @@ function rptSaveDraft() {
 }
 
 const RPT_EXP_TYPES = [
+  'Instructional Salaries (1000)',
   'Non-Instructional Salaries (2000)',
   'Employee Benefits (3000)',
   'Supplies and Materials (4000)',
@@ -4141,7 +4150,7 @@ function bmrvBuildScenes() {
     /* ── Section 1 · Contact header (matches the form's top meta grid, in order) ── */
     { t:'mv-district', cap:'Section 1 — Contact information. Start by entering your Community College District name.', text:dist },
     { t:'mv-by',    cap:'Enter the name and designated grant role of the person submitting this request.', text:'Dr. Jane Smith, Project Lead' },
-    { t:'mv-email', cap:'Add your email address so the Chancellor\'s Office can follow up if needed.', text:'lking@wvm.edu' },
+    { t:'mv-email', cap:'Add your email address so the Chancellor\'s Office can follow up if needed.', text:'jsmith@missioncollege.edu' },
     { t:'mv-date',  cap:'Set today\'s submission date.', text:'2026-09-30' },
     /* ── Section 2 · Year 1 expenditure line — columns left to right: Expenditure Type, Description, Proposed Funds, Actuals, Fund Balance, Projections, Expenditure Updates ── */
     { t:'mv-t1', cap:'Section 2 — Year 1 changes. First, find the Expenditure Type: the budget category from your original grant submission that you are modifying.', kind:'show', text:'' },
@@ -4816,7 +4825,7 @@ function renderSpendDown() {
   const kpiRow = document.getElementById('spend-kpi-row');
   if (kpiRow) {
     kpiRow.innerHTML =
-      '<div class="kpi-card"><div class="kpi-accent-bar blue"></div><div class="kpi-label">' + t('kpi_total_grant_label') + '</div><div class="kpi-value blue">' + fmt(totalGrant) + '</div><div class="kpi-sub">Tier 1 award</div></div>' +
+      '<div class="kpi-card"><div class="kpi-accent-bar blue"></div><div class="kpi-label">' + t('kpi_total_grant_label') + '</div><div class="kpi-value blue">' + fmt(totalGrant) + '</div><div class="kpi-sub">Tier 2 award</div></div>' +
       '<div class="kpi-card"><div class="kpi-accent-bar medium-blue"></div><div class="kpi-label">' + t('kpi_y1_budget_label') + '</div><div class="kpi-value medium-blue">' + fmt(y1) + '</div><div class="kpi-sub">Jan 2026 – Jun 2027</div></div>' +
       '<div class="kpi-card"><div class="kpi-accent-bar gold"></div><div class="kpi-label">' + t('kpi_y2_budget_label') + '</div><div class="kpi-value gold">' + fmt(y2) + '</div><div class="kpi-sub">Jul 2027 – Jun 2028</div></div>' +
       '<div class="kpi-card"><div class="kpi-accent-bar medium-blue"></div><div class="kpi-label">Y1 Fund Balance</div><div class="kpi-value medium-blue">' + fmt(fundBalanceTotal('y1')) + '</div><div class="kpi-sub">Entered by district (BMR)</div></div>' +
