@@ -2137,6 +2137,7 @@ const translations = {
     contacts_title:'Project Contacts', contacts_sub:'Project leads, alternates, and fiscal reporters',
     spend_award_tier:'Tier 2 award',
     spend_title:'Spend-Down Monitor',
+    spend_fb_y1:'Y1 Fund Balance', spend_fb_y2:'Y2 Fund Balance', spend_fb_sub:'Entered by district (BMR)',
     spend_sub:'Track grant expenditures across the 2-year funding cycle and flag districts at risk of underspending',
     filter_combined:'Combined View', filter_y1:'Year 1', filter_y2:'Year 2',
     underspend_title:'⚠ Underspend Risk Alerts',
@@ -2250,6 +2251,7 @@ const translations = {
     contacts_title:'Contactos de Distrito', contacts_sub:'Líderes de proyecto, alternos y reporteros fiscales',
     spend_award_tier:'Subvención de Nivel 2',
     spend_title:'Monitor de Gastos',
+    spend_fb_y1:'Saldo de Fondos Año 1', spend_fb_y2:'Saldo de Fondos Año 2', spend_fb_sub:'Ingresado por el distrito (BMR)',
     spend_sub:'Monitorear gastos de la subvención durante el ciclo de financiamiento de 2 años y marcar distritos con riesgo de subgasto',
     filter_combined:'Vista Combinada', filter_y1:'Año 1', filter_y2:'Año 2',
     underspend_title:'⚠ Alertas de Riesgo de Subgasto',
@@ -2350,6 +2352,7 @@ const translations = {
     contacts_title:'Liên hệ quận', contacts_sub:'Trưởng dự án, người thay thế và báo cáo tài chính',
     spend_award_tier:'Tài trợ Cấp 2',
     spend_title:'Theo dõi Chi tiêu',
+    spend_fb_y1:'Số dư Quỹ Năm 1', spend_fb_y2:'Số dư Quỹ Năm 2', spend_fb_sub:'Do quận nhập (BMR)',
     spend_sub:'Theo dõi chi tiêu trong chu kỳ tài trợ 2 năm và đánh dấu các quận có nguy cơ chi tiêu thiếu',
     filter_combined:'Chế độ Kết hợp', filter_y1:'Năm 1', filter_y2:'Năm 2',
     underspend_title:'⚠ Cảnh báo Rủi ro Chi tiêu Thiếu',
@@ -2421,7 +2424,7 @@ const translations = {
     nav_budget:'Բյուջեի բաշխում',
     nav_timeline:'Ժամանակացույց',
     nav_contacts:'Կոնտակտներ',
-    nav_spenddown:'Spend-Down Monitor',
+    nav_spenddown:'Ծախսերի ընթացքի մոնիտոր',
     topbar_title:'LIFT Mentor Match',
     goals_title:'Նպատակներ և նպատակներ',
     goals_sub:'WVMCCD աշխատանքային ծրագրի երեք հիմնական նպատակները (Բաժին 2.1)՝ յուրաքանչյուրն իր գործողություններով, չափելի արդյունքներով և գնահատման պլանով:',
@@ -2493,7 +2496,8 @@ const translations = {
     contacts_title:'Ծրագրի կոնտակտներ',
     contacts_sub:'Ծրագրի ղեկավարներ, փոխարինողներ և հարկաբյուջետային լրագրողներ',
     spend_award_tier:'2-րդ մակարդակի մրցանակ',
-    spend_title:'Spend-Down Monitor',
+    spend_title:'Ծախսերի ընթացքի մոնիտոր',
+    spend_fb_y1:'1-ին տարվա միջոցների մնացորդ', spend_fb_y2:'2-րդ տարվա միջոցների մնացորդ', spend_fb_sub:'Մուտքագրվում է շրջանի կողմից (BMR)',
     spend_sub:'Հետևեք դրամաշնորհների ծախսերին 2-ամյա ֆինանսավորման ցիկլում և նշեք թերի ծախսման վտանգի տակ գտնվող շրջանները',
     filter_combined:'Համակցված տեսք',
     filter_y1:'Տարի 1',
@@ -2659,6 +2663,7 @@ const translations = {
     contacts_sub:'프로젝트 리더, 대체 담당자 및 회계 보고자',
     spend_award_tier:'2등급 보조금',
     spend_title:'지출감소 모니터',
+    spend_fb_y1:'1년차 자금 잔액', spend_fb_y2:'2년차 자금 잔액', spend_fb_sub:'지구에서 입력 (BMR)',
     spend_sub:'2년 자금 조달 주기에 걸쳐 보조금 지출을 추적하고 지출이 부족할 위험이 있는 지구를 표시합니다.',
     filter_combined:'결합된 보기',
     filter_y1:'1년차',
@@ -2781,6 +2786,7 @@ const translations = {
     contacts_title:'學區聯絡資訊', contacts_sub:'計畫負責人、副負責人和財務報告人',
     spend_award_tier:'第 2 級補助金',
     spend_title:'支出進度監測',
+    spend_fb_y1:'第 1 年資金餘額', spend_fb_y2:'第 2 年資金餘額', spend_fb_sub:'由學區填報(BMR)',
     spend_sub:'追蹤 2 年資助週期內的補助金支出,並標記有支出不足風險的學區',
     underspend_title:'⚠ 支出不足風險警示',
     calculating:'計算中...',
@@ -5026,8 +5032,8 @@ function renderSpendDown() {
       '<div class="kpi-card"><div class="kpi-accent-bar blue"></div><div class="kpi-label">' + t('kpi_total_grant_label') + '</div><div class="kpi-value blue">' + fmt(totalGrant) + '</div><div class="kpi-sub">' + t('spend_award_tier') + '</div></div>' +
       '<div class="kpi-card"><div class="kpi-accent-bar medium-blue"></div><div class="kpi-label">' + t('kpi_y1_budget_label') + '</div><div class="kpi-value medium-blue">' + fmt(y1) + '</div><div class="kpi-sub">Jan 2026 – Jun 2027</div></div>' +
       '<div class="kpi-card"><div class="kpi-accent-bar gold"></div><div class="kpi-label">' + t('kpi_y2_budget_label') + '</div><div class="kpi-value gold">' + fmt(y2) + '</div><div class="kpi-sub">Jul 2027 – Jun 2028</div></div>' +
-      '<div class="kpi-card"><div class="kpi-accent-bar medium-blue"></div><div class="kpi-label">Y1 Fund Balance</div><div class="kpi-value medium-blue">' + fmt(fundBalanceTotal('y1')) + '</div><div class="kpi-sub">Entered by district (BMR)</div></div>' +
-      '<div class="kpi-card"><div class="kpi-accent-bar gold"></div><div class="kpi-label">Y2 Fund Balance</div><div class="kpi-value gold">' + fmt(fundBalanceTotal('y2')) + '</div><div class="kpi-sub">Entered by district (BMR)</div></div>';
+      '<div class="kpi-card"><div class="kpi-accent-bar medium-blue"></div><div class="kpi-label">' + t('spend_fb_y1') + '</div><div class="kpi-value medium-blue">' + fmt(fundBalanceTotal('y1')) + '</div><div class="kpi-sub">' + t('spend_fb_sub') + '</div></div>' +
+      '<div class="kpi-card"><div class="kpi-accent-bar gold"></div><div class="kpi-label">' + t('spend_fb_y2') + '</div><div class="kpi-value gold">' + fmt(fundBalanceTotal('y2')) + '</div><div class="kpi-sub">' + t('spend_fb_sub') + '</div></div>';
   }
 
   renderUnderspendList();
