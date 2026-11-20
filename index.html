@@ -2135,6 +2135,7 @@ const translations = {
     chart_yearly:'Year-by-Year Spend Profile', chart_all_districts:'All Districts',
     tl_y1:'Year 1 (Jan 2026 – Jun 2027)', tl_y2:'Year 2 (Jul 2027 – Jun 2028)',
     contacts_title:'Project Contacts', contacts_sub:'Project leads, alternates, and fiscal reporters',
+    spend_award_tier:'Tier 2 award',
     spend_title:'Spend-Down Monitor',
     spend_sub:'Track grant expenditures across the 2-year funding cycle and flag districts at risk of underspending',
     filter_combined:'Combined View', filter_y1:'Year 1', filter_y2:'Year 2',
@@ -2244,6 +2245,7 @@ const translations = {
     chart_yearly:'Perfil de Gasto Año por Año', chart_all_districts:'Todos los Distritos',
     tl_y1:'Año 1 (Ene 2026 – Jun 2027)', tl_y2:'Año 2 (Jul 2027 – Jun 2028)',
     contacts_title:'Contactos de Distrito', contacts_sub:'Líderes de proyecto, alternos y reporteros fiscales',
+    spend_award_tier:'Subvención de Nivel 2',
     spend_title:'Monitor de Gastos',
     spend_sub:'Monitorear gastos de la subvención durante el ciclo de financiamiento de 2 años y marcar distritos con riesgo de subgasto',
     filter_combined:'Vista Combinada', filter_y1:'Año 1', filter_y2:'Año 2',
@@ -2340,6 +2342,7 @@ const translations = {
     chart_yearly:'Hồ sơ chi tiêu hàng năm', chart_all_districts:'Tất cả quận',
     tl_y1:'Năm 1 (Th1 2026 – Th6 2027)', tl_y2:'Năm 2 (Th7 2027 – Th6 2028)',
     contacts_title:'Liên hệ quận', contacts_sub:'Trưởng dự án, người thay thế và báo cáo tài chính',
+    spend_award_tier:'Tài trợ Cấp 2',
     spend_title:'Theo dõi Chi tiêu',
     spend_sub:'Theo dõi chi tiêu trong chu kỳ tài trợ 2 năm và đánh dấu các quận có nguy cơ chi tiêu thiếu',
     filter_combined:'Chế độ Kết hợp', filter_y1:'Năm 1', filter_y2:'Năm 2',
@@ -2482,6 +2485,7 @@ const translations = {
     tl_y2:'Տարի 2 (հուլիս 2027 - հունիս 2028)',
     contacts_title:'Ծրագրի կոնտակտներ',
     contacts_sub:'Ծրագրի ղեկավարներ, փոխարինողներ և հարկաբյուջետային լրագրողներ',
+    spend_award_tier:'2-րդ մակարդակի մրցանակ',
     spend_title:'Spend-Down Monitor',
     spend_sub:'Հետևեք դրամաշնորհների ծախսերին 2-ամյա ֆինանսավորման ցիկլում և նշեք թերի ծախսման վտանգի տակ գտնվող շրջանները',
     filter_combined:'Համակցված տեսք',
@@ -2645,6 +2649,7 @@ const translations = {
     tl_y2:'2년차(2027년 7월 – 2028년 6월)',
     contacts_title:'프로젝트 연락처',
     contacts_sub:'프로젝트 리더, 대체 담당자 및 회계 보고자',
+    spend_award_tier:'2등급 보조금',
     spend_title:'지출감소 모니터',
     spend_sub:'2년 자금 조달 주기에 걸쳐 보조금 지출을 추적하고 지출이 부족할 위험이 있는 지구를 표시합니다.',
     filter_combined:'결합된 보기',
@@ -2763,6 +2768,7 @@ const translations = {
     chart_yearly:'逐年支出概況', chart_all_districts:'所有學區',
     tl_y1:'第 1 年(2026 年 1 月 – 2027 年 6 月)', tl_y2:'第 2 年(2027 年 7 月 – 2028 年 6 月)',
     contacts_title:'學區聯絡資訊', contacts_sub:'計畫負責人、副負責人和財務報告人',
+    spend_award_tier:'第 2 級補助金',
     spend_title:'支出進度監測',
     spend_sub:'追蹤 2 年資助週期內的補助金支出,並標記有支出不足風險的學區',
     underspend_title:'⚠ 支出不足風險警示',
@@ -4999,7 +5005,7 @@ function renderSpendDown() {
   const kpiRow = document.getElementById('spend-kpi-row');
   if (kpiRow) {
     kpiRow.innerHTML =
-      '<div class="kpi-card"><div class="kpi-accent-bar blue"></div><div class="kpi-label">' + t('kpi_total_grant_label') + '</div><div class="kpi-value blue">' + fmt(totalGrant) + '</div><div class="kpi-sub">Tier 1 award</div></div>' +
+      '<div class="kpi-card"><div class="kpi-accent-bar blue"></div><div class="kpi-label">' + t('kpi_total_grant_label') + '</div><div class="kpi-value blue">' + fmt(totalGrant) + '</div><div class="kpi-sub">' + t('spend_award_tier') + '</div></div>' +
       '<div class="kpi-card"><div class="kpi-accent-bar medium-blue"></div><div class="kpi-label">' + t('kpi_y1_budget_label') + '</div><div class="kpi-value medium-blue">' + fmt(y1) + '</div><div class="kpi-sub">Jan 2026 – Jun 2027</div></div>' +
       '<div class="kpi-card"><div class="kpi-accent-bar gold"></div><div class="kpi-label">' + t('kpi_y2_budget_label') + '</div><div class="kpi-value gold">' + fmt(y2) + '</div><div class="kpi-sub">Jul 2027 – Jun 2028</div></div>' +
       '<div class="kpi-card"><div class="kpi-accent-bar medium-blue"></div><div class="kpi-label">Y1 Fund Balance</div><div class="kpi-value medium-blue">' + fmt(fundBalanceTotal('y1')) + '</div><div class="kpi-sub">Entered by district (BMR)</div></div>' +
